@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+backtest_log.csv
+signals_log.csv
+monthly_calls.csv
