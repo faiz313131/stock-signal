@@ -1,7 +1,43 @@
-.env
-__pycache__/
-*.pyc
-backtest_log.csv
-signals_log.csv
-monthly_calls.csv
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
 
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment files
+.env
+.env.*
+.venv
+
+# Logs and data files
+*.log
+*.csv
+*.sqlite3
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Test / coverage
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+pytest_cache/
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd

@@ -2,7 +2,7 @@ from flask import Flask, render_template
 import pandas as pd
 from datetime import datetime
 import os
-from stock_alerts import fetch_data, compute_indicators, detect_signals, backtest, safe_scalar
+from stock_alerts import fetch_data, compute_indicators, detect_signals, backtest, safe_scalar, TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, WHATSAPP_FROM, WHATSAPP_TO, send_whatsapp
 
 app = Flask(__name__)
 DATA_FILE = "monthly_calls.csv"
@@ -57,6 +57,10 @@ def update_signals():
                 }])
                 monthly_calls = pd.concat([monthly_calls, new_row], ignore_index=True)
                 monthly_calls.to_csv(DATA_FILE,index=False)
+
+                # Send WhatsApp alert
+                msg = f"BUY SIGNAL: {ticker}\nEntry: {entry_price:.2f}\nSL: {SL:.2f}\nTP: {TP:.2f}\nTrend: Bullish\nConfirmation: Swing breakout + High Volume + Candle pattern"
+                send_whatsapp(msg)
 
             # Update status based on last price
             low = safe_scalar(df['Low'].iloc[-1])
